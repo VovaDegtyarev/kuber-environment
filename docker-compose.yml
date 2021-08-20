@@ -3,13 +3,17 @@ version: "3.8"
 services:
   webfrontend:
     image: vova186/kuber-ui
+    container_name: webfrontend
     ports: 
       - "4200:80"
+    depends_on:
+      - webapi
     networks:
       - app-network
 
   webapi:
     image: vova186/kuber-proxy
+    container_name: webapi
     environment: 
       - ASPNETCORE_ENVIRONMENT=Development
     ports: 
