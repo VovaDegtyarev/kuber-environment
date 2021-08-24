@@ -8,9 +8,6 @@ services:
       - "4200:80"
     depends_on:
       - webapi
-    #network_mode: bridge
-    # networks:
-    #   - web
 
   webapi:
     image: vova186/kuber-proxy
@@ -19,11 +16,3 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports: 
       - "7000:80"
-    #network_mode: bridge
-    # networks:
-    #   - web
-
-# networks:
-#   web:
-#     name: bridge
-    #external: true
