@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kuber-proxy-service
+spec:
+  selector:
+    app: kuber-proxy-pod
+  ports:
+  - port: 7000
+    targetPort: 80
+  type: LoadBalancer

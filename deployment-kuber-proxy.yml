@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuber-proxy-deployment
+  labels:
+    app: kuber-proxy-deployment-label
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: kuber-proxy-pod
+  template:
+    metadata:
+      labels:
+        app: kuber-proxy-pod
+        service: kuber-proxy-pod
+    spec:
+      containers:
+        - name: kuber-proxy
+          image: vova186/kuber-proxy
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development

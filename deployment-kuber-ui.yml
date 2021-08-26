@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuber-ui-deployment
+  labels:
+    app: kuber-ui-deployment-label
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: kuber-ui-pod
+  template:
+    metadata:
+      labels:
+        app: kuber-ui-pod
+        service: kuber-ui-pod
+    spec:
+      containers:
+        - name: kuber-ui
+          image: vova186/kuber-ui
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
